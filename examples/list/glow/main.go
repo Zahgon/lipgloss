@@ -12,10 +12,7 @@ type Document struct {
 
 var faint = lipgloss.NewStyle().Faint(true)
 
-func (d Document) String() string {
-	return d.Name + "\n" +
-		faint.Render(d.Time)
-}
+func (d Document) String() string { _ = "STUB: not implemented"; return "" }
 
 var docs = []Document{
 	{"README.md", "2 minutes ago"},

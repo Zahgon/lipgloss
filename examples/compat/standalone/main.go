@@ -1,9 +1,3 @@
-// This example illustrates how to detect the terminal's background color and
-// choose either light or dark colors accordingly when using Lip Gloss in a.
-// standalone fashion, i.e. independent of Bubble Tea.
-//
-// For an example of how to do this in a Bubble Tea program, see the
-// 'bubbletea' example.
 package main
 
 import (
@@ -20,8 +14,7 @@ var (
 )
 
 func main() {
-	// Define some styles. adaptive.Color() can be used to choose the
-	// appropriate light or dark color based on the detected background color.
+
 	frameStyle := lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
 		BorderForeground(frameColor).
@@ -45,7 +38,6 @@ func main() {
 		Background(inactiveBgColor).
 		Foreground(inactiveFgColor)
 
-	// Build layout.
 	text := paragraphStyle.Render(
 		textStyle.Render("Are you sure you want to eat that ") +
 			keywordStyle.Render("moderatly ripe") +
@@ -56,11 +48,5 @@ func main() {
 		lipgloss.JoinVertical(lipgloss.Center, text, buttons),
 	)
 
-	// Print the block to stdout. It's important to use Lip Gloss's print
-	// functions to ensure that colors are downsampled correctly. If output
-	// isn't a TTY (i.e. we're logging to a file) colors will be stripped
-	// entirely.
-	//
-	// Note that in Bubble Tea downsampling happens automatically.
 	lipgloss.Println(block)
 }

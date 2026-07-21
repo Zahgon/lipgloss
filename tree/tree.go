@@ -1,28 +1,3 @@
-// Package tree allows you to build trees, as simple or complicated as you need.
-//
-// Define a tree with a root node, and children, set rendering properties (such
-// as style, enumerators, etc...), and print it.
-//
-//	t := tree.New().
-//		Child(
-//			".git",
-//			tree.Root("examples/").
-//				Child(
-//					tree.Root("list/").
-//						Child("main.go").
-//					tree.Root("table/").
-//						Child("main.go").
-//				).
-//			tree.Root("list/").
-//				Child("list.go", "list_test.go").
-//			tree.New().
-//				Root("table/").
-//				Child("table.go", "table_test.go").
-//			"align.go",
-//			"align_test.go",
-//			"join.go",
-//			"join_test.go",
-//		)
 package tree
 
 import (
@@ -32,7 +7,6 @@ import (
 	"charm.land/lipgloss/v2"
 )
 
-// Node defines a node in a tree.
 type Node interface {
 	fmt.Stringer
 	Value() string
@@ -42,57 +16,25 @@ type Node interface {
 	SetValue(any)
 }
 
-// Leaf is a node without children.
 type Leaf struct {
 	value  string
 	hidden bool
 }
 
-// NewLeaf returns a new Leaf.
-func NewLeaf(value any, hidden bool) *Leaf {
-	s := Leaf{}
-	s.SetValue(value)
-	s.SetHidden(hidden)
-	return &s
-}
+func NewLeaf(value any, hidden bool) *Leaf { _ = "STUB: not implemented"; return nil }
 
-// Children of a Leaf node are always empty.
-func (Leaf) Children() Children {
-	return NodeChildren(nil)
-}
+func (Leaf) Children() Children { _ = "STUB: not implemented"; return *new(Children) }
 
-// Value returns the value of a Leaf node.
-func (s Leaf) Value() string {
-	return s.value
-}
+func (s Leaf) Value() string { _ = "STUB: not implemented"; return "" }
 
-// SetValue sets the value of a Leaf node.
-func (s *Leaf) SetValue(value any) {
-	switch item := value.(type) {
-	case Node, fmt.Stringer:
-		s.value = item.(fmt.Stringer).String()
-	case string, nil:
-		s.value = item.(string)
-	default:
-		s.value = fmt.Sprintf("%v", item)
-	}
-}
+func (s *Leaf) SetValue(value any) { _ = "STUB: not implemented"; return }
 
-// Hidden returns whether a Leaf node is hidden.
-func (s Leaf) Hidden() bool {
-	return s.hidden
-}
+func (s Leaf) Hidden() bool { _ = "STUB: not implemented"; return false }
 
-// SetHidden hides a Leaf node.
-func (s *Leaf) SetHidden(hidden bool) { s.hidden = hidden }
+func (s *Leaf) SetHidden(hidden bool) { _ = "STUB: not implemented"; return }
 
-// String returns the string representation of a Leaf node.
-// For leaf nodes, this is the same as Value.
-func (s Leaf) String() string {
-	return s.Value()
-}
+func (s Leaf) String() string { _ = "STUB: not implemented"; return "" }
 
-// Tree implements a Node.
 type Tree struct {
 	value    string
 	hidden   bool
@@ -103,305 +45,53 @@ type Tree struct {
 	ronce sync.Once
 }
 
-// Hidden returns whether a Tree node is hidden.
-func (t *Tree) Hidden() bool {
-	return t.hidden
-}
+func (t *Tree) Hidden() bool { _ = "STUB: not implemented"; return false }
 
-// Hide sets whether to hide the Tree node. Use this when creating a new
-// hidden Tree.
-func (t *Tree) Hide(hide bool) *Tree {
-	t.hidden = hide
-	return t
-}
+func (t *Tree) Hide(hide bool) *Tree { _ = "STUB: not implemented"; return nil }
 
-// SetHidden hides a Tree node.
-func (t *Tree) SetHidden(hidden bool) { t.Hide(hidden) }
+func (t *Tree) SetHidden(hidden bool) { _ = "STUB: not implemented"; return }
 
-// Offset sets the Tree children offsets.
-func (t *Tree) Offset(start, end int) *Tree {
-	if start > end {
-		_start := start
-		start = end
-		end = _start
-	}
+func (t *Tree) Offset(start, end int) *Tree { _ = "STUB: not implemented"; return nil }
 
-	if start < 0 {
-		start = 0
-	}
-	if end < 0 || end > t.children.Length() {
-		end = t.children.Length()
-	}
+func (t *Tree) Value() string { _ = "STUB: not implemented"; return "" }
 
-	t.offset[0] = start
-	t.offset[1] = end
-	return t
-}
+func (t *Tree) SetValue(value any) { _ = "STUB: not implemented"; return }
 
-// Value returns the root name of this node.
-// If the root implements fmt.Stringer, it will return the value returned by it.
-func (t *Tree) Value() string {
-	return t.value
-}
+func (t *Tree) String() string { _ = "STUB: not implemented"; return "" }
 
-// SetValue sets the value of a Tree node.
-func (t *Tree) SetValue(value any) {
-	t.Root(value)
-}
-
-// String returns the string representation of the Tree node.
-func (t *Tree) String() string {
-	return t.ensureRenderer().render(t, true, "")
-}
-
-// Child adds a child to this Tree.
-//
-// If a Child Tree is passed without a root, it will be parented to its sibling
-// child (auto-nesting).
-//
-//	tree.Root("Foo").Child("Bar", tree.New().Child("Baz"), "Qux")
-//	tree.Root("Foo").Child(tree.Root("Bar").Child("Baz"), "Qux")
-//
-//	├── Foo
-//	├── Bar
-//	│   └── Baz
-//	└── Qux
-func (t *Tree) Child(children ...any) *Tree {
-	for _, child := range children {
-		switch item := child.(type) {
-		case *Tree:
-			newItem, rm := ensureParent(t.children, item)
-			if rm >= 0 {
-				t.children = t.children.(NodeChildren).Remove(rm)
-			}
-			t.children = t.children.(NodeChildren).Append(newItem)
-		case Children:
-			for i := range item.Length() {
-				t.children = t.children.(NodeChildren).Append(item.At(i))
-			}
-		case Node:
-			t.children = t.children.(NodeChildren).Append(item)
-		case fmt.Stringer:
-			s := Leaf{value: item.String()}
-			t.children = t.children.(NodeChildren).Append(&s)
-		case string:
-			s := Leaf{value: item}
-			t.children = t.children.(NodeChildren).Append(&s)
-		case []any:
-			return t.Child(item...)
-		case []string:
-			ss := make([]any, 0, len(item))
-			for _, s := range item {
-				ss = append(ss, s)
-			}
-			return t.Child(ss...)
-		case nil:
-			continue
-		default:
-			return t.Child(fmt.Sprintf("%v", item))
-		}
-	}
-	return t
-}
+func (t *Tree) Child(children ...any) *Tree { _ = "STUB: not implemented"; return nil }
 
 func ensureParent(nodes Children, item *Tree) (*Tree, int) {
-	if item.Value() != "" || nodes.Length() == 0 {
-		return item, -1
-	}
-	j := nodes.Length() - 1
-	parent := nodes.At(j)
-	switch parent := parent.(type) {
-	case *Tree:
-		for i := range item.Children().Length() {
-			parent.Child(item.children.At(i))
-		}
-		return parent, j
-	case *Leaf:
-		item.value = parent.Value()
-		return item, j
-	}
-	return item, -1
+	_ = "STUB: not implemented"
+	return nil, 0
 }
 
-func (t *Tree) ensureRenderer() *renderer {
-	t.ronce.Do(func() { t.r = newRenderer() })
-	return t.r
-}
+func (t *Tree) ensureRenderer() *renderer { _ = "STUB: not implemented"; return nil }
 
-// EnumeratorStyle sets a static style for all enumerators.
-//
-// Use EnumeratorStyleFunc to conditionally set styles based on the tree node.
-func (t *Tree) EnumeratorStyle(style lipgloss.Style) *Tree {
-	t.ensureRenderer().style.enumeratorFunc = func(Children, int) lipgloss.Style {
-		return style
-	}
-	return t
-}
+func (t *Tree) EnumeratorStyle(style lipgloss.Style) *Tree { _ = "STUB: not implemented"; return nil }
 
-// EnumeratorStyleFunc sets the enumeration style function. Use this function
-// for conditional styling.
-//
-//	t := tree.New().
-//		EnumeratorStyleFunc(func(_ tree.Children, i int) lipgloss.Style {
-//		    if selected == i {
-//		        return lipgloss.NewStyle().Foreground(hightlightColor)
-//		    }
-//		    return lipgloss.NewStyle().Foreground(dimColor)
-//		})
-func (t *Tree) EnumeratorStyleFunc(fn StyleFunc) *Tree {
-	if fn == nil {
-		fn = func(Children, int) lipgloss.Style { return lipgloss.NewStyle() }
-	}
-	t.ensureRenderer().style.enumeratorFunc = fn
-	return t
-}
+func (t *Tree) EnumeratorStyleFunc(fn StyleFunc) *Tree { _ = "STUB: not implemented"; return nil }
 
-// IndenterStyle sets a static style for all indenters.
-//
-// Use IndenterStyleFunc to conditionally set styles based on the tree node.
-func (t *Tree) IndenterStyle(style lipgloss.Style) *Tree {
-	t.ensureRenderer().style.indenterFunc = func(Children, int) lipgloss.Style {
-		return style
-	}
-	return t
-}
+func (t *Tree) IndenterStyle(style lipgloss.Style) *Tree { _ = "STUB: not implemented"; return nil }
 
-// IndenterStyleFunc sets the indentation style function. Use this function
-// for conditional styling.
-//
-//	t := tree.New().
-//		IndenterStyleFunc(func(_ tree.Children, i int) lipgloss.Style {
-//		    if selected == i {
-//		        return lipgloss.NewStyle().Foreground(hightlightColor)
-//		    }
-//		    return lipgloss.NewStyle().Foreground(dimColor)
-//		})
-func (t *Tree) IndenterStyleFunc(fn StyleFunc) *Tree {
-	if fn == nil {
-		fn = func(Children, int) lipgloss.Style { return lipgloss.NewStyle() }
-	}
-	t.ensureRenderer().style.indenterFunc = fn
-	return t
-}
+func (t *Tree) IndenterStyleFunc(fn StyleFunc) *Tree { _ = "STUB: not implemented"; return nil }
 
-// RootStyle sets a style for the root element.
-func (t *Tree) RootStyle(style lipgloss.Style) *Tree {
-	t.ensureRenderer().style.root = style
-	return t
-}
+func (t *Tree) RootStyle(style lipgloss.Style) *Tree { _ = "STUB: not implemented"; return nil }
 
-// ItemStyle sets a static style for all items.
-//
-// Use ItemStyleFunc to conditionally set styles based on the tree node.
-func (t *Tree) ItemStyle(style lipgloss.Style) *Tree {
-	t.ensureRenderer().style.itemFunc = func(Children, int) lipgloss.Style { return style }
-	return t
-}
+func (t *Tree) ItemStyle(style lipgloss.Style) *Tree { _ = "STUB: not implemented"; return nil }
 
-// ItemStyleFunc sets the item style function. Use this for conditional styling.
-// For example:
-//
-//	t := tree.New().
-//		ItemStyleFunc(func(_ tree.Data, i int) lipgloss.Style {
-//			if selected == i {
-//				return lipgloss.NewStyle().Foreground(hightlightColor)
-//			}
-//			return lipgloss.NewStyle().Foreground(dimColor)
-//		})
-func (t *Tree) ItemStyleFunc(fn StyleFunc) *Tree {
-	if fn == nil {
-		fn = func(Children, int) lipgloss.Style { return lipgloss.NewStyle() }
-	}
-	t.ensureRenderer().style.itemFunc = fn
-	return t
-}
+func (t *Tree) ItemStyleFunc(fn StyleFunc) *Tree { _ = "STUB: not implemented"; return nil }
 
-// Enumerator sets the enumerator implementation. This can be used to change the
-// way the branches indicators look.  Lipgloss includes predefined enumerators
-// for a classic or rounded tree. For example, you can have a rounded tree:
-//
-//	tree.New().
-//		Enumerator(RoundedEnumerator)
-func (t *Tree) Enumerator(enum Enumerator) *Tree {
-	t.ensureRenderer().enumerator = enum
-	return t
-}
+func (t *Tree) Enumerator(enum Enumerator) *Tree { _ = "STUB: not implemented"; return nil }
 
-// Indenter sets the indenter implementation. This is used to change the way
-// the tree is indented. The default indentor places a border connecting sibling
-// elements and no border for the last child.
-//
-//	└── Foo
-//	    └── Bar
-//	        └── Baz
-//	            └── Qux
-//	                └── Quux
-//
-// You can define your own indenter.
-//
-//	func ArrowIndenter(children tree.Children, index int) string {
-//		return "→ "
-//	}
-//
-//	→ Foo
-//	→ → Bar
-//	→ → → Baz
-//	→ → → → Qux
-//	→ → → → → Quux
-func (t *Tree) Indenter(indenter Indenter) *Tree {
-	t.ensureRenderer().indenter = indenter
-	return t
-}
+func (t *Tree) Indenter(indenter Indenter) *Tree { _ = "STUB: not implemented"; return nil }
 
-// Width sets the tree width.
-//
-// Items will be padded to account for the entire width of the tree.
-func (t *Tree) Width(width int) *Tree {
-	t.ensureRenderer().width = width
-	return t
-}
+func (t *Tree) Width(width int) *Tree { _ = "STUB: not implemented"; return nil }
 
-// Children returns the children of a node.
-func (t *Tree) Children() Children {
-	var data []Node
-	for i := t.offset[0]; i < t.children.Length()-t.offset[1]; i++ {
-		data = append(data, t.children.At(i))
-	}
-	return NodeChildren(data)
-}
+func (t *Tree) Children() Children { _ = "STUB: not implemented"; return *new(Children) }
 
-// Root returns a new tree with the root set.
-//
-//	tree.Root(root)
-//
-// It is a shorthand for:
-//
-//	tree.New().Root(root)
-func Root(root any) *Tree {
-	t := New()
-	return t.Root(root)
-}
+func Root(root any) *Tree { _ = "STUB: not implemented"; return nil }
 
-// Root sets the root value of this tree.
-func (t *Tree) Root(root any) *Tree {
-	// root is a tree or string
-	switch item := root.(type) {
-	case *Tree:
-		t.value = item.value
-		t = t.Child(item.children)
-	case Node, fmt.Stringer:
-		t.value = item.(fmt.Stringer).String()
-	case string, nil:
-		t.value = item.(string)
-	default:
-		t.value = fmt.Sprintf("%v", item)
-	}
-	return t
-}
+func (t *Tree) Root(root any) *Tree { _ = "STUB: not implemented"; return nil }
 
-// New returns a new tree.
-func New() *Tree {
-	return &Tree{
-		children: NodeChildren(nil),
-	}
-}
+func New() *Tree { _ = "STUB: not implemented"; return nil }

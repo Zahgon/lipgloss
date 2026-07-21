@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"path"
 
 	"charm.land/lipgloss/v2"
 	"charm.land/lipgloss/v2/tree"
@@ -19,25 +18,7 @@ type styles struct {
 	toggle lipgloss.Style
 }
 
-func defaultStyles() styles {
-	var s styles
-	s.base = lipgloss.NewStyle()
-	s.container = s.base.
-		Margin(1, 2).
-		Padding(1, 0)
-	s.dir = s.base.
-		Inline(true)
-	s.toggle = s.base.
-		Foreground(lipgloss.Color("5")).
-		PaddingRight(1)
-	s.selected = s.base.
-		Background(lipgloss.Color("8")).
-		Foreground(lipgloss.Color("207")).
-		Bold(true)
-	s.dimmed = s.base.
-		Foreground(lipgloss.Color("241"))
-	return s
-}
+func defaultStyles() styles { _ = "STUB: not implemented"; return *new(styles) }
 
 type dir struct {
 	name   string
@@ -45,70 +26,38 @@ type dir struct {
 	styles styles
 }
 
-func (d dir) String() string {
-	t := d.styles.toggle.PaddingLeft(1).Render
-	n := d.styles.dir.Render
-	if d.open {
-		return t("▼") + n(d.name)
-	}
-	return t("▶") + n(d.name)
-}
+func (d dir) String() string { _ = "STUB: not implemented"; return "" }
 
-// file implements the Node interface.
 type file struct {
 	name   string
 	styles styles
 }
 
-func (s file) String() string {
-	return path.Base(s.name)
-}
+func (s file) String() string { _ = "STUB: not implemented"; return "" }
 
-func (s file) Hidden() bool {
-	return false
-}
+func (s file) Hidden() bool { _ = "STUB: not implemented"; return false }
 
-func (s file) Children() tree.Children {
-	return tree.NodeChildren(nil)
-}
+func (s file) Children() tree.Children { _ = "STUB: not implemented"; return *new(tree.Children) }
 
-func (s file) Value() string {
-	return s.String()
-}
+func (s file) Value() string { _ = "STUB: not implemented"; return "" }
 
-func (s file) SetValue(val any) {
-	return
-}
+func (s file) SetValue(val any) { _ = "STUB: not implemented"; return }
 
-func (s file) SetHidden(val bool) {
-	return
-}
+func (s file) SetHidden(val bool) { _ = "STUB: not implemented"; return }
 
 func isItemSelected(children tree.Children, index int) bool {
-	child := children.At(index)
-	if file, ok := child.(file); ok && file.name == selected {
-		return true
-	}
-
+	_ = "STUB: not implemented"
 	return false
 }
 
 func itemStyle(children tree.Children, index int) lipgloss.Style {
-	s := defaultStyles()
-	if isItemSelected(children, index) {
-		return s.selected
-	}
-
-	return s.base
+	_ = "STUB: not implemented"
+	return *new(lipgloss.Style)
 }
 
 func indenterStyle(children tree.Children, index int) lipgloss.Style {
-	s := defaultStyles()
-	if isItemSelected(children, index) {
-		return s.dimmed.Background(s.selected.GetBackground())
-	}
-
-	return s.dimmed
+	_ = "STUB: not implemented"
+	return *new(lipgloss.Style)
 }
 
 func main() {
@@ -141,10 +90,6 @@ func main() {
 	fmt.Println(s.container.Render(t.String()))
 }
 
-func Enumerator(children tree.Children, index int) string {
-	return " │ "
-}
+func Enumerator(children tree.Children, index int) string { _ = "STUB: not implemented"; return "" }
 
-func Indenter(children tree.Children, index int) string {
-	return " │ "
-}
+func Indenter(children tree.Children, index int) string { _ = "STUB: not implemented"; return "" }

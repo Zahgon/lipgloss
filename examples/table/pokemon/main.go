@@ -93,7 +93,7 @@ func main() {
 			even := row%2 == 0
 
 			switch col {
-			case 2, 3: // Type 1 + 2
+			case 2, 3:
 				c := typeColors
 				if even {
 					c = dimTypeColors

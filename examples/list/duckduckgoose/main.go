@@ -5,12 +5,7 @@ import (
 	"charm.land/lipgloss/v2/list"
 )
 
-func duckDuckGooseEnumerator(items list.Items, i int) string {
-	if items.At(i).Value() == "Goose" {
-		return "Honk →"
-	}
-	return " "
-}
+func duckDuckGooseEnumerator(items list.Items, i int) string { _ = "STUB: not implemented"; return "" }
 
 func main() {
 	enumStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("#00d787")).MarginRight(1)

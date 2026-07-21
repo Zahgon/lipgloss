@@ -46,18 +46,6 @@ func main() {
 
 const rowLength = 12
 
-func makeRow(start, end int) []string {
-	var row []string
-	for i := start; i <= end; i++ {
-		row = append(row, fmt.Sprint(i))
-		row = append(row, "")
-	}
-	for i := len(row); i < rowLength; i++ {
-		row = append(row, "")
-	}
-	return row
-}
+func makeRow(start, end int) []string { _ = "STUB: not implemented"; return nil }
 
-func makeEmptyRow() []string {
-	return makeRow(0, -1)
-}
+func makeEmptyRow() []string { _ = "STUB: not implemented"; return nil }

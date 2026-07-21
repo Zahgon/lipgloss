@@ -1,23 +1,14 @@
 package main
 
-// This example demonstrates how to use a colorprofile to accurately detect
-// client terminal color capabilities for Lip Gloss rendering with Wish, a
-// package for building custom SSH servers.
-//
-// For details on wish see: https://github.com/charmbracelet/wish/
-
 import (
 	"fmt"
 	"log"
-	"strings"
 
 	"charm.land/lipgloss/v2"
-	"github.com/charmbracelet/colorprofile"
 	"github.com/charmbracelet/ssh"
 	"github.com/charmbracelet/wish/v2"
 )
 
-// Available styles.
 type styles struct {
 	bold          lipgloss.Style
 	faint         lipgloss.Style
@@ -33,101 +24,9 @@ type styles struct {
 	gray          lipgloss.Style
 }
 
-// Create new styles.
-func makeStyles() styles {
-	return styles{
-		bold:          lipgloss.NewStyle().SetString("bold").Bold(true),
-		faint:         lipgloss.NewStyle().SetString("faint").Faint(true),
-		italic:        lipgloss.NewStyle().SetString("italic").Italic(true),
-		underline:     lipgloss.NewStyle().SetString("underline").Underline(true),
-		strikethrough: lipgloss.NewStyle().SetString("strikethrough").Strikethrough(true),
-		red:           lipgloss.NewStyle().SetString("red").Foreground(lipgloss.Color("#E88388")),
-		green:         lipgloss.NewStyle().SetString("green").Foreground(lipgloss.Color("#A8CC8C")),
-		yellow:        lipgloss.NewStyle().SetString("yellow").Foreground(lipgloss.Color("#DBAB79")),
-		blue:          lipgloss.NewStyle().SetString("blue").Foreground(lipgloss.Color("#71BEF2")),
-		magenta:       lipgloss.NewStyle().SetString("magenta").Foreground(lipgloss.Color("#D290E4")),
-		cyan:          lipgloss.NewStyle().SetString("cyan").Foreground(lipgloss.Color("#66C2CD")),
-		gray:          lipgloss.NewStyle().SetString("gray").Foreground(lipgloss.Color("#B9BFCA")),
-	}
-}
+func makeStyles() styles { _ = "STUB: not implemented"; return *new(styles) }
 
-// Handle SSH requests.
-func handler(next ssh.Handler) ssh.Handler {
-	return func(sess ssh.Session) {
-		pty, _, active := sess.Pty()
-		if !active {
-			next(sess)
-			return
-		}
-
-		environ := sess.Environ()
-		environ = append(environ, fmt.Sprintf("TERM=%s", pty.Term))
-		output := colorprofile.NewWriter(pty.Slave, environ)
-		width := pty.Window.Width
-
-		// Initialize new styles.
-		styles := makeStyles()
-
-		str := strings.Builder{}
-
-		fmt.Fprintf(&str, "\n\nProfile: %s\n%s %s %s %s %s",
-			colorprofile.Detect(pty.Slave, environ),
-			styles.bold,
-			styles.faint,
-			styles.italic,
-			styles.underline,
-			styles.strikethrough,
-		)
-
-		fmt.Fprintf(&str, "\n%s %s %s %s %s %s %s",
-			styles.red,
-			styles.green,
-			styles.yellow,
-			styles.blue,
-			styles.magenta,
-			styles.cyan,
-			styles.gray,
-		)
-
-		fmt.Fprintf(&str, "\n%s %s %s %s %s %s %s\n\n",
-			styles.red,
-			styles.green,
-			styles.yellow,
-			styles.blue,
-			styles.magenta,
-			styles.cyan,
-			styles.gray,
-		)
-
-		hasDarkBG := lipgloss.HasDarkBackground(pty.Slave, pty.Slave)
-		lightDark := lipgloss.LightDark(hasDarkBG)
-
-		fmt.Fprintf(&str, "%s %s\n\n",
-			styles.bold.UnsetString().Render("Has dark background?"),
-			func() string {
-				if hasDarkBG {
-					return "Yep."
-				}
-				return "Nope!"
-			}(),
-		)
-
-		block := lipgloss.Place(width,
-			lipgloss.Height(str.String()), lipgloss.Center, lipgloss.Center, str.String(),
-			lipgloss.WithWhitespaceChars("/"),
-			lipgloss.WithWhitespaceStyle(
-				lipgloss.NewStyle().Foreground(lightDark(
-					lipgloss.ANSIColor(250),
-					lipgloss.ANSIColor(236),
-				))),
-		)
-
-		// Render to client.
-		output.WriteString(block)
-
-		next(sess)
-	}
-}
+func handler(next ssh.Handler) ssh.Handler { _ = "STUB: not implemented"; return *new(ssh.Handler) }
 
 func main() {
 	port := 3456
