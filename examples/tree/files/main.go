@@ -3,50 +3,12 @@ package main
 import (
 	"fmt"
 	"os"
-	"path/filepath"
-	"strings"
 
 	"charm.land/lipgloss/v2"
 	"charm.land/lipgloss/v2/tree"
 )
 
-func addBranches(root *tree.Tree, path string) error {
-	items, err := os.ReadDir(path)
-	if err != nil {
-		return err
-	}
-
-	for _, item := range items {
-		if item.IsDir() {
-			// It's a directory.
-
-			// Skip directories that start with a dot.
-			if strings.HasPrefix(item.Name(), ".") {
-				continue
-			}
-
-			treeBranch := tree.Root(item.Name())
-			root.Child(treeBranch)
-
-			// Recurse.
-			branchPath := filepath.Join(path, item.Name())
-			if err := addBranches(treeBranch, branchPath); err != nil {
-				return err
-			}
-		} else {
-			// It's a file.
-
-			// Skip files that start with a dot.
-			if strings.HasPrefix(item.Name(), ".") {
-				continue
-			}
-
-			root.Child(item.Name())
-		}
-	}
-
-	return nil
-}
+func addBranches(root *tree.Tree, path string) error { _ = "STUB: not implemented"; return nil }
 
 func main() {
 	enumeratorStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("240")).PaddingRight(1)

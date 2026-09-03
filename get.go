@@ -2,656 +2,208 @@ package lipgloss
 
 import (
 	"image/color"
-	"strings"
-
-	"github.com/charmbracelet/x/ansi"
 )
 
-// GetBold returns the style's bold value. If no value is set false is returned.
-func (s Style) GetBold() bool {
-	return s.getAsBool(boldKey, false)
-}
+func (s Style) GetBold() bool { _ = "STUB: not implemented"; return false }
 
-// GetItalic returns the style's italic value. If no value is set false is
-// returned.
-func (s Style) GetItalic() bool {
-	return s.getAsBool(italicKey, false)
-}
+func (s Style) GetItalic() bool { _ = "STUB: not implemented"; return false }
 
-// GetUnderline returns the style's underline value. If no value is set false is
-// returned.
-func (s Style) GetUnderline() bool {
-	return s.ul != UnderlineNone
-}
+func (s Style) GetUnderline() bool { _ = "STUB: not implemented"; return false }
 
-// GetUnderlineStyle returns the style's underline style. If no value is set
-// UnderlineNone is returned.
-func (s Style) GetUnderlineStyle() Underline {
-	return s.ul
-}
+func (s Style) GetUnderlineStyle() Underline { _ = "STUB: not implemented"; return *new(Underline) }
 
-// GetUnderlineColor returns the style's underline color. If no value is set
-// NoColor{} is returned.
-func (s Style) GetUnderlineColor() color.Color {
-	return s.getAsColor(underlineColorKey)
-}
+func (s Style) GetUnderlineColor() color.Color { _ = "STUB: not implemented"; return *new(color.Color) }
 
-// GetStrikethrough returns the style's strikethrough value. If no value is set false
-// is returned.
-func (s Style) GetStrikethrough() bool {
-	return s.getAsBool(strikethroughKey, false)
-}
+func (s Style) GetStrikethrough() bool { _ = "STUB: not implemented"; return false }
 
-// GetReverse returns the style's reverse value. If no value is set false is
-// returned.
-func (s Style) GetReverse() bool {
-	return s.getAsBool(reverseKey, false)
-}
+func (s Style) GetReverse() bool { _ = "STUB: not implemented"; return false }
 
-// GetBlink returns the style's blink value. If no value is set false is
-// returned.
-func (s Style) GetBlink() bool {
-	return s.getAsBool(blinkKey, false)
-}
+func (s Style) GetBlink() bool { _ = "STUB: not implemented"; return false }
 
-// GetFaint returns the style's faint value. If no value is set false is
-// returned.
-func (s Style) GetFaint() bool {
-	return s.getAsBool(faintKey, false)
-}
+func (s Style) GetFaint() bool { _ = "STUB: not implemented"; return false }
 
-// GetForeground returns the style's foreground color. If no value is set
-// NoColor{} is returned.
-func (s Style) GetForeground() color.Color {
-	return s.getAsColor(foregroundKey)
-}
+func (s Style) GetForeground() color.Color { _ = "STUB: not implemented"; return *new(color.Color) }
 
-// GetBackground returns the style's background color. If no value is set
-// NoColor{} is returned.
-func (s Style) GetBackground() color.Color {
-	return s.getAsColor(backgroundKey)
-}
+func (s Style) GetBackground() color.Color { _ = "STUB: not implemented"; return *new(color.Color) }
 
-// GetWidth returns the style's width setting. If no width is set 0 is
-// returned.
-func (s Style) GetWidth() int {
-	return s.getAsInt(widthKey)
-}
+func (s Style) GetWidth() int { _ = "STUB: not implemented"; return 0 }
 
-// GetHeight returns the style's height setting. If no height is set 0 is
-// returned.
-func (s Style) GetHeight() int {
-	return s.getAsInt(heightKey)
-}
+func (s Style) GetHeight() int { _ = "STUB: not implemented"; return 0 }
 
-// GetAlign returns the style's implicit horizontal alignment setting.
-// If no alignment is set Position.Left is returned.
-func (s Style) GetAlign() Position {
-	v := s.getAsPosition(alignHorizontalKey)
-	if v == Position(0) {
-		return Left
-	}
-	return v
-}
+func (s Style) GetAlign() Position { _ = "STUB: not implemented"; return *new(Position) }
 
-// GetAlignHorizontal returns the style's implicit horizontal alignment setting.
-// If no alignment is set Position.Left is returned.
-func (s Style) GetAlignHorizontal() Position {
-	v := s.getAsPosition(alignHorizontalKey)
-	if v == Position(0) {
-		return Left
-	}
-	return v
-}
+func (s Style) GetAlignHorizontal() Position { _ = "STUB: not implemented"; return *new(Position) }
 
-// GetAlignVertical returns the style's implicit vertical alignment setting.
-// If no alignment is set Position.Top is returned.
-func (s Style) GetAlignVertical() Position {
-	v := s.getAsPosition(alignVerticalKey)
-	if v == Position(0) {
-		return Top
-	}
-	return v
-}
+func (s Style) GetAlignVertical() Position { _ = "STUB: not implemented"; return *new(Position) }
 
-// GetPadding returns the style's top, right, bottom, and left padding values,
-// in that order. 0 is returned for unset values.
 func (s Style) GetPadding() (top, right, bottom, left int) {
-	return s.getAsInt(paddingTopKey),
-		s.getAsInt(paddingRightKey),
-		s.getAsInt(paddingBottomKey),
-		s.getAsInt(paddingLeftKey)
+	_ = "STUB: not implemented"
+	return 0, 0, 0, 0
 }
 
-// GetPaddingTop returns the style's top padding. If no value is set 0 is
-// returned.
-func (s Style) GetPaddingTop() int {
-	return s.getAsInt(paddingTopKey)
-}
+func (s Style) GetPaddingTop() int { _ = "STUB: not implemented"; return 0 }
 
-// GetPaddingRight returns the style's right padding. If no value is set 0 is
-// returned.
-func (s Style) GetPaddingRight() int {
-	return s.getAsInt(paddingRightKey)
-}
+func (s Style) GetPaddingRight() int { _ = "STUB: not implemented"; return 0 }
 
-// GetPaddingBottom returns the style's bottom padding. If no value is set 0 is
-// returned.
-func (s Style) GetPaddingBottom() int {
-	return s.getAsInt(paddingBottomKey)
-}
+func (s Style) GetPaddingBottom() int { _ = "STUB: not implemented"; return 0 }
 
-// GetPaddingLeft returns the style's left padding. If no value is set 0 is
-// returned.
-func (s Style) GetPaddingLeft() int {
-	return s.getAsInt(paddingLeftKey)
-}
+func (s Style) GetPaddingLeft() int { _ = "STUB: not implemented"; return 0 }
 
-// GetPaddingChar returns the style's padding character. If no value is set a
-// space is returned.
-func (s Style) GetPaddingChar() rune {
-	char := s.getAsRune(paddingCharKey)
-	if char == 0 {
-		return ' '
-	}
-	return char
-}
+func (s Style) GetPaddingChar() rune { _ = "STUB: not implemented"; return 0 }
 
-// GetHorizontalPadding returns the style's left and right padding. Unset
-// values are measured as 0.
-func (s Style) GetHorizontalPadding() int {
-	return s.getAsInt(paddingLeftKey) + s.getAsInt(paddingRightKey)
-}
+func (s Style) GetHorizontalPadding() int { _ = "STUB: not implemented"; return 0 }
 
-// GetVerticalPadding returns the style's top and bottom padding. Unset values
-// are measured as 0.
-func (s Style) GetVerticalPadding() int {
-	return s.getAsInt(paddingTopKey) + s.getAsInt(paddingBottomKey)
-}
+func (s Style) GetVerticalPadding() int { _ = "STUB: not implemented"; return 0 }
 
-// GetColorWhitespace returns the style's whitespace coloring setting. If no
-// value is set false is returned.
-func (s Style) GetColorWhitespace() bool {
-	return s.getAsBool(colorWhitespaceKey, false)
-}
+func (s Style) GetColorWhitespace() bool { _ = "STUB: not implemented"; return false }
 
-// GetMargin returns the style's top, right, bottom, and left margins, in that
-// order. 0 is returned for unset values.
 func (s Style) GetMargin() (top, right, bottom, left int) {
-	return s.getAsInt(marginTopKey),
-		s.getAsInt(marginRightKey),
-		s.getAsInt(marginBottomKey),
-		s.getAsInt(marginLeftKey)
+	_ = "STUB: not implemented"
+	return 0, 0, 0, 0
 }
 
-// GetMarginTop returns the style's top margin. If no value is set 0 is
-// returned.
-func (s Style) GetMarginTop() int {
-	return s.getAsInt(marginTopKey)
-}
+func (s Style) GetMarginTop() int { _ = "STUB: not implemented"; return 0 }
 
-// GetMarginRight returns the style's right margin. If no value is set 0 is
-// returned.
-func (s Style) GetMarginRight() int {
-	return s.getAsInt(marginRightKey)
-}
+func (s Style) GetMarginRight() int { _ = "STUB: not implemented"; return 0 }
 
-// GetMarginBottom returns the style's bottom margin. If no value is set 0 is
-// returned.
-func (s Style) GetMarginBottom() int {
-	return s.getAsInt(marginBottomKey)
-}
+func (s Style) GetMarginBottom() int { _ = "STUB: not implemented"; return 0 }
 
-// GetMarginLeft returns the style's left margin. If no value is set 0 is
-// returned.
-func (s Style) GetMarginLeft() int {
-	return s.getAsInt(marginLeftKey)
-}
+func (s Style) GetMarginLeft() int { _ = "STUB: not implemented"; return 0 }
 
-// GetMarginChar returns the style's padding character. If no value is set a
-// space is returned.
-func (s Style) GetMarginChar() rune {
-	char := s.getAsRune(marginCharKey)
-	if char == 0 {
-		return ' '
-	}
-	return char
-}
+func (s Style) GetMarginChar() rune { _ = "STUB: not implemented"; return 0 }
 
-// GetHorizontalMargins returns the style's left and right margins. Unset
-// values are measured as 0.
-func (s Style) GetHorizontalMargins() int {
-	return s.getAsInt(marginLeftKey) + s.getAsInt(marginRightKey)
-}
+func (s Style) GetHorizontalMargins() int { _ = "STUB: not implemented"; return 0 }
 
-// GetVerticalMargins returns the style's top and bottom margins. Unset values
-// are measured as 0.
-func (s Style) GetVerticalMargins() int {
-	return s.getAsInt(marginTopKey) + s.getAsInt(marginBottomKey)
-}
+func (s Style) GetVerticalMargins() int { _ = "STUB: not implemented"; return 0 }
 
-// GetBorder returns the style's border style (type Border) and value for the
-// top, right, bottom, and left in that order. If no value is set for the
-// border style, Border{} is returned. For all other unset values false is
-// returned.
 func (s Style) GetBorder() (b Border, top, right, bottom, left bool) {
-	return s.getBorderStyle(),
-		s.getAsBool(borderTopKey, false),
-		s.getAsBool(borderRightKey, false),
-		s.getAsBool(borderBottomKey, false),
-		s.getAsBool(borderLeftKey, false)
+	_ = "STUB: not implemented"
+	return *new(Border), false, false, false, false
 }
 
-// GetBorderStyle returns the style's border style (type Border). If no value
-// is set Border{} is returned.
-func (s Style) GetBorderStyle() Border {
-	return s.getBorderStyle()
-}
+func (s Style) GetBorderStyle() Border { _ = "STUB: not implemented"; return *new(Border) }
 
-// GetBorderTop returns the style's top border setting. If no value is set
-// false is returned.
-func (s Style) GetBorderTop() bool {
-	return s.getAsBool(borderTopKey, false)
-}
+func (s Style) GetBorderTop() bool { _ = "STUB: not implemented"; return false }
 
-// GetBorderRight returns the style's right border setting. If no value is set
-// false is returned.
-func (s Style) GetBorderRight() bool {
-	return s.getAsBool(borderRightKey, false)
-}
+func (s Style) GetBorderRight() bool { _ = "STUB: not implemented"; return false }
 
-// GetBorderBottom returns the style's bottom border setting. If no value is
-// set false is returned.
-func (s Style) GetBorderBottom() bool {
-	return s.getAsBool(borderBottomKey, false)
-}
+func (s Style) GetBorderBottom() bool { _ = "STUB: not implemented"; return false }
 
-// GetBorderLeft returns the style's left border setting. If no value is
-// set false is returned.
-func (s Style) GetBorderLeft() bool {
-	return s.getAsBool(borderLeftKey, false)
-}
+func (s Style) GetBorderLeft() bool { _ = "STUB: not implemented"; return false }
 
-// GetBorderTopForeground returns the style's border top foreground color. If
-// no value is set NoColor{} is returned.
 func (s Style) GetBorderTopForeground() color.Color {
-	return s.getAsColor(borderTopForegroundKey)
+	_ = "STUB: not implemented"
+	return *new(color.Color)
 }
 
-// GetBorderRightForeground returns the style's border right foreground color.
-// If no value is set NoColor{} is returned.
 func (s Style) GetBorderRightForeground() color.Color {
-	return s.getAsColor(borderRightForegroundKey)
+	_ = "STUB: not implemented"
+	return *new(color.Color)
 }
 
-// GetBorderBottomForeground returns the style's border bottom foreground
-// color.  If no value is set NoColor{} is returned.
 func (s Style) GetBorderBottomForeground() color.Color {
-	return s.getAsColor(borderBottomForegroundKey)
+	_ = "STUB: not implemented"
+	return *new(color.Color)
 }
 
-// GetBorderLeftForeground returns the style's border left foreground
-// color.  If no value is set NoColor{} is returned.
 func (s Style) GetBorderLeftForeground() color.Color {
-	return s.getAsColor(borderLeftForegroundKey)
+	_ = "STUB: not implemented"
+	return *new(color.Color)
 }
 
-// GetBorderForegroundBlend returns the style's border blend foreground
-// colors. If no value is set, nil is returned.
-func (s Style) GetBorderForegroundBlend() []color.Color {
-	return s.getAsColors(borderForegroundBlendKey)
-}
+func (s Style) GetBorderForegroundBlend() []color.Color { _ = "STUB: not implemented"; return nil }
 
-// GetBorderForegroundBlendOffset returns the style's border blend offset. If no
-// value is set, 0 is returned.
-func (s Style) GetBorderForegroundBlendOffset() int {
-	return s.getAsInt(borderForegroundBlendOffsetKey)
-}
+func (s Style) GetBorderForegroundBlendOffset() int { _ = "STUB: not implemented"; return 0 }
 
-// GetBorderTopBackground returns the style's border top background color. If
-// no value is set NoColor{} is returned.
 func (s Style) GetBorderTopBackground() color.Color {
-	return s.getAsColor(borderTopBackgroundKey)
+	_ = "STUB: not implemented"
+	return *new(color.Color)
 }
 
-// GetBorderRightBackground returns the style's border right background color.
-// If no value is set NoColor{} is returned.
 func (s Style) GetBorderRightBackground() color.Color {
-	return s.getAsColor(borderRightBackgroundKey)
+	_ = "STUB: not implemented"
+	return *new(color.Color)
 }
 
-// GetBorderBottomBackground returns the style's border bottom background
-// color.  If no value is set NoColor{} is returned.
 func (s Style) GetBorderBottomBackground() color.Color {
-	return s.getAsColor(borderBottomBackgroundKey)
+	_ = "STUB: not implemented"
+	return *new(color.Color)
 }
 
-// GetBorderLeftBackground returns the style's border left background
-// color.  If no value is set NoColor{} is returned.
 func (s Style) GetBorderLeftBackground() color.Color {
-	return s.getAsColor(borderLeftBackgroundKey)
+	_ = "STUB: not implemented"
+	return *new(color.Color)
 }
 
-// GetBorderTopWidth returns the width of the top border. If borders contain
-// runes of varying widths, the widest rune is returned. If no border exists on
-// the top edge, 0 is returned.
-//
-// Deprecated: This function simply calls Style.GetBorderTopSize.
-func (s Style) GetBorderTopWidth() int {
-	return s.GetBorderTopSize()
-}
+func (s Style) GetBorderTopWidth() int { _ = "STUB: not implemented"; return 0 }
 
-// GetBorderTopSize returns the width of the top border. If borders contain
-// runes of varying widths, the widest rune is returned. If no border exists on
-// the top edge, 0 is returned.
-func (s Style) GetBorderTopSize() int {
-	if s.isBorderStyleSetWithoutSides() {
-		return 1
-	}
-	if !s.getAsBool(borderTopKey, false) {
-		return 0
-	}
-	return s.getBorderStyle().GetTopSize()
-}
+func (s Style) GetBorderTopSize() int { _ = "STUB: not implemented"; return 0 }
 
-// GetBorderLeftSize returns the width of the left border. If borders contain
-// runes of varying widths, the widest rune is returned. If no border exists on
-// the left edge, 0 is returned.
-func (s Style) GetBorderLeftSize() int {
-	if s.isBorderStyleSetWithoutSides() {
-		return 1
-	}
-	if !s.getAsBool(borderLeftKey, false) {
-		return 0
-	}
-	return s.getBorderStyle().GetLeftSize()
-}
+func (s Style) GetBorderLeftSize() int { _ = "STUB: not implemented"; return 0 }
 
-// GetBorderBottomSize returns the width of the bottom border. If borders
-// contain runes of varying widths, the widest rune is returned. If no border
-// exists on the left edge, 0 is returned.
-func (s Style) GetBorderBottomSize() int {
-	if s.isBorderStyleSetWithoutSides() {
-		return 1
-	}
-	if !s.getAsBool(borderBottomKey, false) {
-		return 0
-	}
-	return s.getBorderStyle().GetBottomSize()
-}
+func (s Style) GetBorderBottomSize() int { _ = "STUB: not implemented"; return 0 }
 
-// GetBorderRightSize returns the width of the right border. If borders
-// contain runes of varying widths, the widest rune is returned. If no border
-// exists on the right edge, 0 is returned.
-func (s Style) GetBorderRightSize() int {
-	if s.isBorderStyleSetWithoutSides() {
-		return 1
-	}
-	if !s.getAsBool(borderRightKey, false) {
-		return 0
-	}
-	return s.getBorderStyle().GetRightSize()
-}
+func (s Style) GetBorderRightSize() int { _ = "STUB: not implemented"; return 0 }
 
-// GetHorizontalBorderSize returns the width of the horizontal borders. If
-// borders contain runes of varying widths, the widest rune is returned. If no
-// border exists on the horizontal edges, 0 is returned.
-func (s Style) GetHorizontalBorderSize() int {
-	return s.GetBorderLeftSize() + s.GetBorderRightSize()
-}
+func (s Style) GetHorizontalBorderSize() int { _ = "STUB: not implemented"; return 0 }
 
-// GetVerticalBorderSize returns the width of the vertical borders. If
-// borders contain runes of varying widths, the widest rune is returned. If no
-// border exists on the vertical edges, 0 is returned.
-func (s Style) GetVerticalBorderSize() int {
-	return s.GetBorderTopSize() + s.GetBorderBottomSize()
-}
+func (s Style) GetVerticalBorderSize() int { _ = "STUB: not implemented"; return 0 }
 
-// GetInline returns the style's inline setting. If no value is set false is
-// returned.
-func (s Style) GetInline() bool {
-	return s.getAsBool(inlineKey, false)
-}
+func (s Style) GetInline() bool { _ = "STUB: not implemented"; return false }
 
-// GetMaxWidth returns the style's max width setting. If no value is set 0 is
-// returned.
-func (s Style) GetMaxWidth() int {
-	return s.getAsInt(maxWidthKey)
-}
+func (s Style) GetMaxWidth() int { _ = "STUB: not implemented"; return 0 }
 
-// GetMaxHeight returns the style's max height setting. If no value is set 0 is
-// returned.
-func (s Style) GetMaxHeight() int {
-	return s.getAsInt(maxHeightKey)
-}
+func (s Style) GetMaxHeight() int { _ = "STUB: not implemented"; return 0 }
 
-// GetTabWidth returns the style's tab width setting. If no value is set 4 is
-// returned which is the implicit default.
-func (s Style) GetTabWidth() int {
-	return s.getAsInt(tabWidthKey)
-}
+func (s Style) GetTabWidth() int { _ = "STUB: not implemented"; return 0 }
 
-// GetUnderlineSpaces returns whether or not the style is set to underline
-// spaces. If not value is set false is returned.
-func (s Style) GetUnderlineSpaces() bool {
-	return s.getAsBool(underlineSpacesKey, false)
-}
+func (s Style) GetUnderlineSpaces() bool { _ = "STUB: not implemented"; return false }
 
-// GetStrikethroughSpaces returns whether or not the style is set to strikethrough
-// spaces. If not value is set false is returned.
-func (s Style) GetStrikethroughSpaces() bool {
-	return s.getAsBool(strikethroughSpacesKey, false)
-}
+func (s Style) GetStrikethroughSpaces() bool { _ = "STUB: not implemented"; return false }
 
-// GetHorizontalFrameSize returns the sum of the style's horizontal margins, padding
-// and border widths.
-//
-// Provisional: this method may be renamed.
-func (s Style) GetHorizontalFrameSize() int {
-	return s.GetHorizontalMargins() + s.GetHorizontalPadding() + s.GetHorizontalBorderSize()
-}
+func (s Style) GetHorizontalFrameSize() int { _ = "STUB: not implemented"; return 0 }
 
-// GetVerticalFrameSize returns the sum of the style's vertical margins, padding
-// and border widths.
-//
-// Provisional: this method may be renamed.
-func (s Style) GetVerticalFrameSize() int {
-	return s.GetVerticalMargins() + s.GetVerticalPadding() + s.GetVerticalBorderSize()
-}
+func (s Style) GetVerticalFrameSize() int { _ = "STUB: not implemented"; return 0 }
 
-// GetFrameSize returns the sum of the margins, padding and border width for
-// both the horizontal and vertical margins.
-func (s Style) GetFrameSize() (x, y int) {
-	return s.GetHorizontalFrameSize(), s.GetVerticalFrameSize()
-}
+func (s Style) GetFrameSize() (x, y int) { _ = "STUB: not implemented"; return 0, 0 }
 
-// GetTransform returns the transform set on the style. If no transform is set
-// nil is returned.
-func (s Style) GetTransform() func(string) string {
-	return s.getAsTransform(transformKey)
-}
+func (s Style) GetTransform() func(string) string { _ = "STUB: not implemented"; return nil }
 
-// GetHyperlink returns the hyperlink along with its parameters. If no
-// hyperlink is set, empty strings are returned.
-func (s Style) GetHyperlink() (link, params string) {
-	if s.isSet(linkKey) {
-		link = s.link
-	}
-	if s.isSet(linkParamsKey) {
-		params = s.linkParams
-	}
-	return
-}
+func (s Style) GetHyperlink() (link, params string) { _ = "STUB: not implemented"; return "", "" }
 
-// Returns whether or not the given property is set.
-func (s Style) isSet(k propKey) bool {
-	return s.props.has(k)
-}
+func (s Style) isSet(k propKey) bool { _ = "STUB: not implemented"; return false }
 
-func (s Style) getAsRune(k propKey) rune {
-	if !s.isSet(k) {
-		return 0
-	}
-	switch k { //nolint:exhaustive
-	case paddingCharKey:
-		return s.paddingChar
-	case marginCharKey:
-		return s.marginChar
-	}
-	return 0
-}
+func (s Style) getAsRune(k propKey) rune { _ = "STUB: not implemented"; return 0 }
 
-func (s Style) getAsBool(k propKey, defaultVal bool) bool {
-	if !s.isSet(k) {
-		return defaultVal
-	}
-	return s.attrs&int(k) != 0
-}
+//nolint:exhaustive
 
-func (s Style) getAsColors(k propKey) (colors []color.Color) {
-	if !s.isSet(k) {
-		return nil
-	}
+func (s Style) getAsBool(k propKey, defaultVal bool) bool { _ = "STUB: not implemented"; return false }
 
-	switch k { //nolint:exhaustive
-	case borderForegroundBlendKey:
-		return s.borderBlendFgColor
-	}
+func (s Style) getAsColors(k propKey) (colors []color.Color) { _ = "STUB: not implemented"; return nil }
 
-	return nil
-}
+//nolint:exhaustive
 
 func (s Style) getAsColor(k propKey) color.Color {
-	if !s.isSet(k) {
-		return noColor
-	}
-
-	var c color.Color
-	switch k { //nolint:exhaustive
-	case foregroundKey:
-		c = s.fgColor
-	case backgroundKey:
-		c = s.bgColor
-	case marginBackgroundKey:
-		c = s.marginBgColor
-	case borderTopForegroundKey:
-		c = s.borderTopFgColor
-	case borderRightForegroundKey:
-		c = s.borderRightFgColor
-	case borderBottomForegroundKey:
-		c = s.borderBottomFgColor
-	case borderLeftForegroundKey:
-		c = s.borderLeftFgColor
-	case borderTopBackgroundKey:
-		c = s.borderTopBgColor
-	case borderRightBackgroundKey:
-		c = s.borderRightBgColor
-	case borderBottomBackgroundKey:
-		c = s.borderBottomBgColor
-	case borderLeftBackgroundKey:
-		c = s.borderLeftBgColor
-	case underlineColorKey:
-		c = s.ulColor
-	}
-
-	if c != nil {
-		return c
-	}
-
-	return noColor
+	_ = "STUB: not implemented"
+	return *new(color.Color)
 }
 
-func (s Style) getAsInt(k propKey) int {
-	if !s.isSet(k) {
-		return 0
-	}
-	switch k { //nolint:exhaustive
-	case widthKey:
-		return s.width
-	case heightKey:
-		return s.height
-	case paddingTopKey:
-		return s.paddingTop
-	case paddingRightKey:
-		return s.paddingRight
-	case paddingBottomKey:
-		return s.paddingBottom
-	case paddingLeftKey:
-		return s.paddingLeft
-	case marginTopKey:
-		return s.marginTop
-	case marginRightKey:
-		return s.marginRight
-	case marginBottomKey:
-		return s.marginBottom
-	case marginLeftKey:
-		return s.marginLeft
-	case borderForegroundBlendOffsetKey:
-		return s.borderForegroundBlendOffset
-	case maxWidthKey:
-		return s.maxWidth
-	case maxHeightKey:
-		return s.maxHeight
-	case tabWidthKey:
-		return s.tabWidth
-	}
-	return 0
-}
+//nolint:exhaustive
 
-func (s Style) getAsPosition(k propKey) Position {
-	if !s.isSet(k) {
-		return Position(0)
-	}
-	switch k { //nolint:exhaustive
-	case alignHorizontalKey:
-		return s.alignHorizontal
-	case alignVerticalKey:
-		return s.alignVertical
-	}
-	return Position(0)
-}
+func (s Style) getAsInt(k propKey) int { _ = "STUB: not implemented"; return 0 }
 
-func (s Style) getBorderStyle() Border {
-	if !s.isSet(borderStyleKey) {
-		return noBorder
-	}
-	return s.borderStyle
-}
+//nolint:exhaustive
 
-func (s Style) getAsTransform(propKey) func(string) string {
-	if !s.isSet(transformKey) {
-		return nil
-	}
-	return s.transform
-}
+func (s Style) getAsPosition(k propKey) Position { _ = "STUB: not implemented"; return *new(Position) }
 
-// Split a string into lines, additionally returning the size of the widest
-// line.
-func getLines(s string) (lines []string, widest int) {
-	s = strings.ReplaceAll(s, "\t", "    ")
-	s = strings.ReplaceAll(s, "\r\n", "\n")
-	lines = strings.Split(s, "\n")
+//nolint:exhaustive
 
-	for _, l := range lines {
-		w := ansi.StringWidth(l)
-		if widest < w {
-			widest = w
-		}
-	}
+func (s Style) getBorderStyle() Border { _ = "STUB: not implemented"; return *new(Border) }
 
-	return lines, widest
-}
+func (s Style) getAsTransform(propKey) func(string) string { _ = "STUB: not implemented"; return nil }
 
-// isBorderStyleSetWithoutSides returns true if the border style is set but no
-// sides are set. This is used to determine if the border should be rendered by
-// default.
-func (s Style) isBorderStyleSetWithoutSides() bool {
-	var (
-		border    = s.getBorderStyle()
-		topSet    = s.isSet(borderTopKey)
-		rightSet  = s.isSet(borderRightKey)
-		bottomSet = s.isSet(borderBottomKey)
-		leftSet   = s.isSet(borderLeftKey)
-	)
-	return border != noBorder && !(topSet || rightSet || bottomSet || leftSet) //nolint:staticcheck
-}
+func getLines(s string) (lines []string, widest int) { _ = "STUB: not implemented"; return nil, 0 }
+
+func (s Style) isBorderStyleSetWithoutSides() bool { _ = "STUB: not implemented"; return false }
+
+//nolint:staticcheck

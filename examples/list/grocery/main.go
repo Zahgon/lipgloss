@@ -17,14 +17,7 @@ var purchased = []string{
 	"Papaya",
 }
 
-func groceryEnumerator(items list.Items, i int) string {
-	for _, p := range purchased {
-		if items.At(i).Value() == p {
-			return "✓"
-		}
-	}
-	return "•"
-}
+func groceryEnumerator(items list.Items, i int) string { _ = "STUB: not implemented"; return "" }
 
 var dimEnumStyle = lipgloss.NewStyle().
 	Foreground(lipgloss.Color("240")).
@@ -35,22 +28,13 @@ var highlightedEnumStyle = lipgloss.NewStyle().
 	MarginRight(1)
 
 func enumStyleFunc(items list.Items, i int) lipgloss.Style {
-	for _, p := range purchased {
-		if items.At(i).Value() == p {
-			return highlightedEnumStyle
-		}
-	}
-	return dimEnumStyle
+	_ = "STUB: not implemented"
+	return *new(lipgloss.Style)
 }
 
 func itemStyleFunc(items list.Items, i int) lipgloss.Style {
-	itemStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("255"))
-	for _, p := range purchased {
-		if items.At(i).Value() == p {
-			return itemStyle.Strikethrough(true)
-		}
-	}
-	return itemStyle
+	_ = "STUB: not implemented"
+	return *new(lipgloss.Style)
 }
 
 func main() {

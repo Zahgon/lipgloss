@@ -1,5 +1,3 @@
-// This example demonstrates how to use the colors.Blend2D function to create
-// beautiful 2D color gradients in a standalone Lip Gloss application.
 package main
 
 import (
@@ -23,51 +21,50 @@ func main() {
 		{
 			name: "Sunset Diagonal",
 			stops: []color.Color{
-				lipgloss.Color("#FF6B6B"), // Coral
-				lipgloss.Color("#FFB74D"), // Orange
-				lipgloss.Color("#FFDFBA"), // Peach
+				lipgloss.Color("#FF6B6B"),
+				lipgloss.Color("#FFB74D"),
+				lipgloss.Color("#FFDFBA"),
 			},
 			angle: 45,
 		},
 		{
 			name: "Ocean Wave",
 			stops: []color.Color{
-				lipgloss.Color("#0077B6"), // Deep Blue
-				lipgloss.Color("#48CAE4"), // Sky Blue
-				lipgloss.Color("#ADE8F4"), // Light Blue
+				lipgloss.Color("#0077B6"),
+				lipgloss.Color("#48CAE4"),
+				lipgloss.Color("#ADE8F4"),
 			},
 			angle: 90,
 		},
 		{
 			name: "Forest Mist",
 			stops: []color.Color{
-				lipgloss.Color("#228B22"), // Forest Green
-				lipgloss.Color("#90EE90"), // Light Green
-				lipgloss.Color("#FFFFE0"), // Cream
+				lipgloss.Color("#228B22"),
+				lipgloss.Color("#90EE90"),
+				lipgloss.Color("#FFFFE0"),
 			},
 			angle: 135,
 		},
 		{
 			name: "Purple Dream",
 			stops: []color.Color{
-				lipgloss.Color("#9370DB"), // Medium Purple
-				lipgloss.Color("#DDA0DD"), // Plum
-				lipgloss.Color("#FFB6C1"), // Light Pink
+				lipgloss.Color("#9370DB"),
+				lipgloss.Color("#DDA0DD"),
+				lipgloss.Color("#FFB6C1"),
 			},
 			angle: 180,
 		},
 		{
 			name: "Fire Gradient",
 			stops: []color.Color{
-				lipgloss.Color("#FF0000"), // Red
-				lipgloss.Color("#FFA500"), // Orange
-				lipgloss.Color("#FFFF00"), // Yellow
+				lipgloss.Color("#FF0000"),
+				lipgloss.Color("#FFA500"),
+				lipgloss.Color("#FFFF00"),
 			},
 			angle: 225,
 		},
 	}
 
-	// Create styles.
 	titleStyle := lipgloss.NewStyle().
 		Bold(true).
 		Foreground(lightDark(lipgloss.Color("#2D3748"), lipgloss.Color("#E2E8F0"))).
@@ -90,13 +87,12 @@ func main() {
 	content.WriteString("\n\n")
 
 	for _, gradient := range gradients {
-		// Generate the gradient using Blend2D.
+
 		width, height := 30, 12
 		blendedColors := lipgloss.Blend2D(width, height, gradient.angle, gradient.stops...)
 
-		// Create the gradient box using individual character styling.
 		var gradientBox strings.Builder
-		for y := range height { // Uses 1D row-major order.
+		for y := range height {
 			for x := range width {
 				index := y*width + x
 				gradientBox.WriteString(
@@ -105,7 +101,7 @@ func main() {
 						Render("█"),
 				)
 			}
-			if y < height-1 { // End of row.
+			if y < height-1 {
 				gradientBox.WriteString("\n")
 			}
 		}

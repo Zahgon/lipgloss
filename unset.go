@@ -1,359 +1,114 @@
 package lipgloss
 
-// unset unsets a property from a style.
-func (s *Style) unset(key propKey) {
-	s.props = s.props.unset(key)
-}
+func (s *Style) unset(key propKey) { _ = "STUB: not implemented"; return }
 
-// UnsetBold removes the bold style rule, if set.
-func (s Style) UnsetBold() Style {
-	s.unset(boldKey)
-	return s
-}
+func (s Style) UnsetBold() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetItalic removes the italic style rule, if set.
-func (s Style) UnsetItalic() Style {
-	s.unset(italicKey)
-	return s
-}
+func (s Style) UnsetItalic() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetUnderline removes the underline style rule, if set.
-func (s Style) UnsetUnderline() Style {
-	return s.Underline(false)
-}
+func (s Style) UnsetUnderline() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetStrikethrough removes the strikethrough style rule, if set.
-func (s Style) UnsetStrikethrough() Style {
-	s.unset(strikethroughKey)
-	return s
-}
+func (s Style) UnsetStrikethrough() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetReverse removes the reverse style rule, if set.
-func (s Style) UnsetReverse() Style {
-	s.unset(reverseKey)
-	return s
-}
+func (s Style) UnsetReverse() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBlink removes the blink style rule, if set.
-func (s Style) UnsetBlink() Style {
-	s.unset(blinkKey)
-	return s
-}
+func (s Style) UnsetBlink() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetFaint removes the faint style rule, if set.
-func (s Style) UnsetFaint() Style {
-	s.unset(faintKey)
-	return s
-}
+func (s Style) UnsetFaint() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetForeground removes the foreground style rule, if set.
-func (s Style) UnsetForeground() Style {
-	s.unset(foregroundKey)
-	return s
-}
+func (s Style) UnsetForeground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBackground removes the background style rule, if set.
-func (s Style) UnsetBackground() Style {
-	s.unset(backgroundKey)
-	return s
-}
+func (s Style) UnsetBackground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetWidth removes the width style rule, if set.
-func (s Style) UnsetWidth() Style {
-	s.unset(widthKey)
-	return s
-}
+func (s Style) UnsetWidth() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetHeight removes the height style rule, if set.
-func (s Style) UnsetHeight() Style {
-	s.unset(heightKey)
-	return s
-}
+func (s Style) UnsetHeight() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetAlign removes the horizontal and vertical text alignment style rule, if set.
-func (s Style) UnsetAlign() Style {
-	s.unset(alignHorizontalKey)
-	s.unset(alignVerticalKey)
-	return s
-}
+func (s Style) UnsetAlign() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetAlignHorizontal removes the horizontal text alignment style rule, if set.
-func (s Style) UnsetAlignHorizontal() Style {
-	s.unset(alignHorizontalKey)
-	return s
-}
+func (s Style) UnsetAlignHorizontal() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetAlignVertical removes the vertical text alignment style rule, if set.
-func (s Style) UnsetAlignVertical() Style {
-	s.unset(alignVerticalKey)
-	return s
-}
+func (s Style) UnsetAlignVertical() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetPadding removes all padding style rules.
-func (s Style) UnsetPadding() Style {
-	s.unset(paddingLeftKey)
-	s.unset(paddingRightKey)
-	s.unset(paddingTopKey)
-	s.unset(paddingBottomKey)
-	s.unset(paddingCharKey)
-	return s
-}
+func (s Style) UnsetPadding() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetPaddingChar removes the padding character style rule, if set.
-func (s Style) UnsetPaddingChar() Style {
-	s.unset(paddingCharKey)
-	return s
-}
+func (s Style) UnsetPaddingChar() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetPaddingLeft removes the left padding style rule, if set.
-func (s Style) UnsetPaddingLeft() Style {
-	s.unset(paddingLeftKey)
-	return s
-}
+func (s Style) UnsetPaddingLeft() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetPaddingRight removes the right padding style rule, if set.
-func (s Style) UnsetPaddingRight() Style {
-	s.unset(paddingRightKey)
-	return s
-}
+func (s Style) UnsetPaddingRight() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetPaddingTop removes the top padding style rule, if set.
-func (s Style) UnsetPaddingTop() Style {
-	s.unset(paddingTopKey)
-	return s
-}
+func (s Style) UnsetPaddingTop() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetPaddingBottom removes the bottom padding style rule, if set.
-func (s Style) UnsetPaddingBottom() Style {
-	s.unset(paddingBottomKey)
-	return s
-}
+func (s Style) UnsetPaddingBottom() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetColorWhitespace removes the rule for coloring padding, if set.
-func (s Style) UnsetColorWhitespace() Style {
-	s.unset(colorWhitespaceKey)
-	return s
-}
+func (s Style) UnsetColorWhitespace() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetMargins removes all margin style rules.
-func (s Style) UnsetMargins() Style {
-	s.unset(marginLeftKey)
-	s.unset(marginRightKey)
-	s.unset(marginTopKey)
-	s.unset(marginBottomKey)
-	return s
-}
+func (s Style) UnsetMargins() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetMarginLeft removes the left margin style rule, if set.
-func (s Style) UnsetMarginLeft() Style {
-	s.unset(marginLeftKey)
-	return s
-}
+func (s Style) UnsetMarginLeft() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetMarginRight removes the right margin style rule, if set.
-func (s Style) UnsetMarginRight() Style {
-	s.unset(marginRightKey)
-	return s
-}
+func (s Style) UnsetMarginRight() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetMarginTop removes the top margin style rule, if set.
-func (s Style) UnsetMarginTop() Style {
-	s.unset(marginTopKey)
-	return s
-}
+func (s Style) UnsetMarginTop() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetMarginBottom removes the bottom margin style rule, if set.
-func (s Style) UnsetMarginBottom() Style {
-	s.unset(marginBottomKey)
-	return s
-}
+func (s Style) UnsetMarginBottom() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetMarginBackground removes the margin's background color. Note that the
-// margin's background color can be set from the background color of another
-// style during inheritance.
-func (s Style) UnsetMarginBackground() Style {
-	s.unset(marginBackgroundKey)
-	return s
-}
+func (s Style) UnsetMarginBackground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderStyle removes the border style rule, if set.
-func (s Style) UnsetBorderStyle() Style {
-	s.unset(borderStyleKey)
-	return s
-}
+func (s Style) UnsetBorderStyle() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderTop removes the border top style rule, if set.
-func (s Style) UnsetBorderTop() Style {
-	s.unset(borderTopKey)
-	return s
-}
+func (s Style) UnsetBorderTop() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderRight removes the border right style rule, if set.
-func (s Style) UnsetBorderRight() Style {
-	s.unset(borderRightKey)
-	return s
-}
+func (s Style) UnsetBorderRight() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderBottom removes the border bottom style rule, if set.
-func (s Style) UnsetBorderBottom() Style {
-	s.unset(borderBottomKey)
-	return s
-}
+func (s Style) UnsetBorderBottom() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderLeft removes the border left style rule, if set.
-func (s Style) UnsetBorderLeft() Style {
-	s.unset(borderLeftKey)
-	return s
-}
+func (s Style) UnsetBorderLeft() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderForeground removes all border foreground color styles, if set.
-func (s Style) UnsetBorderForeground() Style {
-	s.unset(borderTopForegroundKey)
-	s.unset(borderRightForegroundKey)
-	s.unset(borderBottomForegroundKey)
-	s.unset(borderLeftForegroundKey)
-	return s
-}
+func (s Style) UnsetBorderForeground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderTopForeground removes the top border foreground color rule,
-// if set.
-func (s Style) UnsetBorderTopForeground() Style {
-	s.unset(borderTopForegroundKey)
-	return s
-}
+func (s Style) UnsetBorderTopForeground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderRightForeground removes the right border foreground color rule,
-// if set.
-func (s Style) UnsetBorderRightForeground() Style {
-	s.unset(borderRightForegroundKey)
-	return s
-}
+func (s Style) UnsetBorderRightForeground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderBottomForeground removes the bottom border foreground color
-// rule, if set.
-func (s Style) UnsetBorderBottomForeground() Style {
-	s.unset(borderBottomForegroundKey)
-	return s
-}
+func (s Style) UnsetBorderBottomForeground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderLeftForeground removes the left border foreground color rule,
-// if set.
-func (s Style) UnsetBorderLeftForeground() Style {
-	s.unset(borderLeftForegroundKey)
-	return s
-}
+func (s Style) UnsetBorderLeftForeground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderForegroundBlend removes the border blend foreground color rules,
-// if set.
-func (s Style) UnsetBorderForegroundBlend() Style {
-	s.unset(borderForegroundBlendKey)
-	return s
-}
+func (s Style) UnsetBorderForegroundBlend() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderForegroundBlendOffset removes the border blend offset style rule,
-// if set.
 func (s Style) UnsetBorderForegroundBlendOffset() Style {
-	s.unset(borderForegroundBlendOffsetKey)
-	return s
+	_ = "STUB: not implemented"
+	return *new(Style)
 }
 
-// UnsetBorderBackground removes all border background color styles, if
-// set.
-func (s Style) UnsetBorderBackground() Style {
-	s.unset(borderTopBackgroundKey)
-	s.unset(borderRightBackgroundKey)
-	s.unset(borderBottomBackgroundKey)
-	s.unset(borderLeftBackgroundKey)
-	return s
-}
+func (s Style) UnsetBorderBackground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderTopBackgroundColor removes the top border background color rule,
-// if set.
-//
-// Deprecated: This function simply calls Style.UnsetBorderTopBackground.
-func (s Style) UnsetBorderTopBackgroundColor() Style {
-	return s.UnsetBorderTopBackground()
-}
+func (s Style) UnsetBorderTopBackgroundColor() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderTopBackground removes the top border background color rule,
-// if set.
-func (s Style) UnsetBorderTopBackground() Style {
-	s.unset(borderTopBackgroundKey)
-	return s
-}
+func (s Style) UnsetBorderTopBackground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderRightBackground removes the right border background color
-// rule, if set.
-func (s Style) UnsetBorderRightBackground() Style {
-	s.unset(borderRightBackgroundKey)
-	return s
-}
+func (s Style) UnsetBorderRightBackground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderBottomBackground removes the bottom border background color
-// rule, if set.
-func (s Style) UnsetBorderBottomBackground() Style {
-	s.unset(borderBottomBackgroundKey)
-	return s
-}
+func (s Style) UnsetBorderBottomBackground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetBorderLeftBackground removes the left border color rule, if set.
-func (s Style) UnsetBorderLeftBackground() Style {
-	s.unset(borderLeftBackgroundKey)
-	return s
-}
+func (s Style) UnsetBorderLeftBackground() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetInline removes the inline style rule, if set.
-func (s Style) UnsetInline() Style {
-	s.unset(inlineKey)
-	return s
-}
+func (s Style) UnsetInline() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetMaxWidth removes the max width style rule, if set.
-func (s Style) UnsetMaxWidth() Style {
-	s.unset(maxWidthKey)
-	return s
-}
+func (s Style) UnsetMaxWidth() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetMaxHeight removes the max height style rule, if set.
-func (s Style) UnsetMaxHeight() Style {
-	s.unset(maxHeightKey)
-	return s
-}
+func (s Style) UnsetMaxHeight() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetTabWidth removes the tab width style rule, if set.
-func (s Style) UnsetTabWidth() Style {
-	s.unset(tabWidthKey)
-	return s
-}
+func (s Style) UnsetTabWidth() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetUnderlineSpaces removes the value set by UnderlineSpaces.
-func (s Style) UnsetUnderlineSpaces() Style {
-	s.unset(underlineSpacesKey)
-	return s
-}
+func (s Style) UnsetUnderlineSpaces() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetStrikethroughSpaces removes the value set by StrikethroughSpaces.
-func (s Style) UnsetStrikethroughSpaces() Style {
-	s.unset(strikethroughSpacesKey)
-	return s
-}
+func (s Style) UnsetStrikethroughSpaces() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetTransform removes the value set by Transform.
-func (s Style) UnsetTransform() Style {
-	s.unset(transformKey)
-	return s
-}
+func (s Style) UnsetTransform() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetHyperlink removes the value set by Hyperlink.
-func (s Style) UnsetHyperlink() Style {
-	s.unset(linkKey)
-	s.unset(linkParamsKey)
-	s.link, s.linkParams = "", "" // save memory
-	return s
-}
+func (s Style) UnsetHyperlink() Style { _ = "STUB: not implemented"; return *new(Style) }
 
-// UnsetString sets the underlying string value to the empty string.
-func (s Style) UnsetString() Style {
-	s.value = ""
-	return s
-}
+func (s Style) UnsetString() Style { _ = "STUB: not implemented"; return *new(Style) }

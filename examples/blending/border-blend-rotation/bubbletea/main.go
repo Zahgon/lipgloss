@@ -3,10 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"time"
 
 	tea "charm.land/bubbletea/v2"
-	"charm.land/lipgloss/v2"
 )
 
 const (
@@ -18,52 +16,20 @@ type borderRotationTickMsg struct {
 	Value int
 }
 
-func borderRotationTick(current int) tea.Cmd {
-	return tea.Tick(time.Second/time.Duration(borderRotationFPS), func(_ time.Time) tea.Msg {
-		return borderRotationTickMsg{Value: current + borderRotationSteps}
-	})
-}
+func borderRotationTick(current int) tea.Cmd { _ = "STUB: not implemented"; return *new(tea.Cmd) }
 
 type model struct {
 	borderRotation int
 }
 
-func (m model) Init() tea.Cmd {
-	return borderRotationTick(0)
-}
+func (m model) Init() tea.Cmd { _ = "STUB: not implemented"; return *new(tea.Cmd) }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	switch msg := msg.(type) {
-	case tea.KeyPressMsg:
-		switch msg.String() {
-		case "q", "esc", "ctrl+c":
-			return m, tea.Quit
-		}
-	case borderRotationTickMsg:
-		m.borderRotation = msg.Value
-		return m, borderRotationTick(msg.Value)
-	}
-
-	return m, nil
+	_ = "STUB: not implemented"
+	return *new(tea.Model), *new(tea.Cmd)
 }
 
-func (m model) View() tea.View {
-	v := tea.NewView(lipgloss.NewStyle().
-		Border(lipgloss.RoundedBorder()).
-		BorderForegroundBlend(
-			lipgloss.Color("#00FA68"),
-			lipgloss.Color("#9900FF"),
-			lipgloss.Color("#ED5353"),
-			lipgloss.Color("#9900FF"),
-			lipgloss.Color("#00FA68"),
-		).
-		BorderForegroundBlendOffset(m.borderRotation).
-		Width(60).
-		Height(15).
-		Render("Hello, world!"))
-	v.AltScreen = true
-	return v
-}
+func (m model) View() tea.View { _ = "STUB: not implemented"; return *new(tea.View) }
 
 func main() {
 	_, err := tea.NewProgram(model{}).Run()

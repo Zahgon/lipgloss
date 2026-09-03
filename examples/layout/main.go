@@ -1,7 +1,5 @@
 package main
 
-// This example demonstrates various Lip Gloss style and layout features.
-
 import (
 	"fmt"
 	"image/color"
@@ -10,42 +8,27 @@ import (
 
 	"charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/term"
-	"github.com/rivo/uniseg"
 )
 
 const (
-	// In real life situations we'd adjust the document to fit the width we've
-	// detected. In the case of this example we're hardcoding the width, and
-	// later using the detected width only to truncate in order to avoid jaggy
-	// wrapping.
 	width = 96
 
-	// How wide to render various columns in the layout.
 	columnWidth = 30
 )
 
 var (
-	// Whether the detected background color is dark. We detect this at app start.
 	hasDarkBG bool
 
-	// A helper function for choosing either a light or dark color based on the
-	// detected background color. We create this at app start.
 	lightDark lipgloss.LightDarkFunc
 )
 
 func main() {
-	// Detect the background color.
+
 	hasDarkBG = lipgloss.HasDarkBackground(os.Stdin, os.Stdout)
 
-	// Create a new helper function for choosing either a light or dark color
-	// based on the detected background color.
 	lightDark = lipgloss.LightDark(hasDarkBG)
 
-	// Style definitions.
 	var (
-
-		// General.
-
 		subtle    = lightDark(lipgloss.Color("#D9DCCF"), lipgloss.Color("#383838"))
 		highlight = lightDark(lipgloss.Color("#874BFD"), lipgloss.Color("#7D56F4"))
 		special   = lightDark(lipgloss.Color("#43BF6D"), lipgloss.Color("#73F59F"))
@@ -57,8 +40,6 @@ func main() {
 			String()
 
 		url = lipgloss.NewStyle().Foreground(special).Render
-
-		// Tabs.
 
 		activeTabBorder = lipgloss.Border{
 			Top:         "─",
@@ -94,8 +75,6 @@ func main() {
 			BorderLeft(false).
 			BorderRight(false)
 
-		// Title.
-
 		titleStyle = lipgloss.NewStyle().
 				MarginLeft(1).
 				MarginRight(5).
@@ -110,8 +89,6 @@ func main() {
 				BorderStyle(lipgloss.NormalBorder()).
 				BorderTop(true).
 				BorderForeground(subtle)
-
-		// Dialog.
 
 		dialogBoxStyle = lipgloss.NewStyle().
 				Border(lipgloss.RoundedBorder()).
@@ -133,8 +110,6 @@ func main() {
 					Background(lipgloss.Color("#F25D94")).
 					MarginRight(2).
 					Underline(true)
-
-		// List.
 
 		list = lipgloss.NewStyle().
 			Border(lipgloss.NormalBorder(), false, true, false, false).
@@ -164,8 +139,6 @@ func main() {
 				Render(s)
 		}
 
-		// Paragraphs/History.
-
 		historyStyle = lipgloss.NewStyle().
 				Align(lipgloss.Left).
 				Foreground(lipgloss.Color("#FAFAFA")).
@@ -174,8 +147,6 @@ func main() {
 				Padding(1, 2).
 				Height(19).
 				Width(columnWidth)
-
-		// Status Bar.
 
 		statusNugget = lipgloss.NewStyle().
 				Foreground(lipgloss.Color("#FFFDF5")).
@@ -200,8 +171,6 @@ func main() {
 
 		fishCakeStyle = statusNugget.Background(lipgloss.Color("#6124DF"))
 
-		// Floating thing.
-
 		floatingStyle = lipgloss.NewStyle().
 				Italic(true).
 				Foreground(lipgloss.Color("#FFF7DB")).
@@ -209,15 +178,12 @@ func main() {
 				Padding(1, 6).
 				Align(lipgloss.Center)
 
-		// Page.
-
 		docStyle = lipgloss.NewStyle().Padding(1, 2, 1, 2)
 	)
 
 	physicalWidth, _, _ := term.GetSize(os.Stdout.Fd())
 	doc := strings.Builder{}
 
-	// Tabs.
 	{
 		row := lipgloss.JoinHorizontal(
 			lipgloss.Top,
@@ -232,7 +198,6 @@ func main() {
 		doc.WriteString(row + "\n\n")
 	}
 
-	// Title.
 	{
 		var (
 			colors = colorGrid(1, 5)
@@ -256,7 +221,6 @@ func main() {
 		doc.WriteString(row + "\n\n")
 	}
 
-	// Dialog.
 	{
 		okButton := activeButtonStyle.Render("Yes")
 		cancelButton := buttonStyle.Render("Maybe")
@@ -286,7 +250,6 @@ func main() {
 		doc.WriteString(dialog + "\n\n")
 	}
 
-	// Color grid.
 	colors := func() string {
 		colors := colorGrid(14, 8)
 
@@ -327,7 +290,6 @@ func main() {
 
 	doc.WriteString(lipgloss.JoinHorizontal(lipgloss.Top, lists, lipgloss.NewStyle().MarginLeft(1).Render(colors)))
 
-	// Marmalade history.
 	{
 		const (
 			historyA = "The Romans learned from the Greeks that quinces slowly cooked with honey would “set” when cool. The Apicius gives a recipe for preserving whole quinces, stems and leaves attached, in a bath of honey diluted with defrutum: Roman marmalade. Preserves of quince and lemon appear (along with rose, apple, plum and pear) in the Book of ceremonies of the Byzantine Emperor Constantine VII Porphyrogennetos."
@@ -345,7 +307,6 @@ func main() {
 		doc.WriteString("\n\n")
 	}
 
-	// Status bar.
 	{
 		w := lipgloss.Width
 
@@ -375,10 +336,8 @@ func main() {
 		docStyle = docStyle.MaxWidth(physicalWidth)
 	}
 
-	// Render the document.
 	document := docStyle.Render(doc.String())
 
-	// Surprise! Composite some bonus content on top of the document.
 	modal := floatingStyle.Render("Now with Compositing!")
 	layers := []*lipgloss.Layer{
 		lipgloss.NewLayer(document),
@@ -387,47 +346,12 @@ func main() {
 
 	comp := lipgloss.NewCompositor(layers...)
 
-	// Okay, let's print it. We use a special Lipgloss writer to downsample
-	// colors to the terminal's color palette. And, if output's not a TTY, we
-	// will remove color entirely.
 	lipgloss.Println(comp.Render())
 }
 
-// colorGrid blends colors from 4 corner quadrants, into a box region.
-func colorGrid(xSteps, ySteps int) [][]color.Color {
-	leftColors := lipgloss.Blend1D(ySteps, lipgloss.Color("#F25D94"), lipgloss.Color("#643AFF"))
-	rightColors := lipgloss.Blend1D(ySteps, lipgloss.Color("#EDFF82"), lipgloss.Color("#14F9D5"))
+func colorGrid(xSteps, ySteps int) [][]color.Color { _ = "STUB: not implemented"; return nil }
 
-	grid := make([][]color.Color, ySteps)
-	for y := range ySteps {
-		rowColors := lipgloss.Blend1D(xSteps, leftColors[y], rightColors[y])
-		grid[y] = make([]color.Color, xSteps)
-		for x := range xSteps {
-			grid[y][x] = rowColors[x]
-		}
-	}
-	return grid
-}
-
-// applyGradient applies a gradient to the given string.
 func applyGradient(base lipgloss.Style, input string, from, to color.Color) string {
-	// We want to get the graphemes of the input string, which is the number of
-	// characters as a human would see them.
-	//
-	// We definitely don't want to use len(), because that returns the
-	// bytes. The rune count would get us closer but there are times, like with
-	// emojis, where the rune count is greater than the number of actual
-	// characters.
-	g := uniseg.NewGraphemes(input)
-	var chars []string
-	for g.Next() {
-		chars = append(chars, g.Str())
-	}
-
-	gradient := lipgloss.Blend1D(len(chars), from, to)
-	var output strings.Builder
-	for i, char := range chars {
-		output.WriteString(base.Foreground(gradient[i]).Render(char))
-	}
-	return output.String()
+	_ = "STUB: not implemented"
+	return ""
 }

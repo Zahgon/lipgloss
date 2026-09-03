@@ -14,26 +14,7 @@ type styles struct {
 	file lipgloss.Style
 }
 
-func defaultStyles() styles {
-	var s styles
-	s.base = lipgloss.NewStyle().
-		Background(lipgloss.Color("57")).
-		Foreground(lipgloss.Color("225"))
-	s.block = s.base.
-		Padding(1, 3).
-		Margin(1, 3).
-		Width(40)
-	s.pink = s.base.
-		Foreground(lipgloss.Color("212")).
-		PaddingRight(1)
-	s.dir = s.base.
-		Inline(true)
-	s.toggle = s.base.
-		Foreground(lipgloss.Color("207")).
-		PaddingRight(1)
-	s.file = s.base
-	return s
-}
+func defaultStyles() styles { _ = "STUB: not implemented"; return *new(styles) }
 
 type dir struct {
 	name   string
@@ -41,23 +22,14 @@ type dir struct {
 	styles styles
 }
 
-func (d dir) String() string {
-	t := d.styles.toggle.Render
-	n := d.styles.dir.Render
-	if d.open {
-		return t("▼") + n(d.name)
-	}
-	return t("▶") + n(d.name)
-}
+func (d dir) String() string { _ = "STUB: not implemented"; return "" }
 
 type file struct {
 	name   string
 	styles styles
 }
 
-func (s file) String() string {
-	return s.styles.file.Render(s.name)
-}
+func (s file) String() string { _ = "STUB: not implemented"; return "" }
 
 func main() {
 	s := defaultStyles()

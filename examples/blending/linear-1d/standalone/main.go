@@ -1,5 +1,3 @@
-// This example demonstrates how to use the colors.Blend1D function to create
-// beautiful color gradients in a standalone Lip Gloss application.
 package main
 
 import (
@@ -12,29 +10,29 @@ import (
 
 var gradients = [][]color.Color{
 	{
-		lipgloss.Color("#FF6B6B"), // Coral
-		lipgloss.Color("#FFB74D"), // Orange
-		lipgloss.Color("#FFDFBA"), // Peach
+		lipgloss.Color("#FF6B6B"),
+		lipgloss.Color("#FFB74D"),
+		lipgloss.Color("#FFDFBA"),
 	},
 	{
-		lipgloss.Color("#0077B6"), // Deep Blue
-		lipgloss.Color("#48CAE4"), // Sky Blue
-		lipgloss.Color("#ADE8F4"), // Light Blue
+		lipgloss.Color("#0077B6"),
+		lipgloss.Color("#48CAE4"),
+		lipgloss.Color("#ADE8F4"),
 	},
 	{
-		lipgloss.Color("#228B22"), // Forest Green
-		lipgloss.Color("#90EE90"), // Light Green
-		lipgloss.Color("#FFFFE0"), // Cream
+		lipgloss.Color("#228B22"),
+		lipgloss.Color("#90EE90"),
+		lipgloss.Color("#FFFFE0"),
 	},
 	{
-		lipgloss.Color("#9370DB"), // Medium Purple
-		lipgloss.Color("#DDA0DD"), // Plum
-		lipgloss.Color("#FFB6C1"), // Light Pink
+		lipgloss.Color("#9370DB"),
+		lipgloss.Color("#DDA0DD"),
+		lipgloss.Color("#FFB6C1"),
 	},
 	{
-		lipgloss.Color("#9900FF"), // Purple
-		lipgloss.Color("#00FA68"), // Lime
-		lipgloss.Color("#ED5353"), // Red
+		lipgloss.Color("#9900FF"),
+		lipgloss.Color("#00FA68"),
+		lipgloss.Color("#ED5353"),
 	},
 }
 
@@ -42,7 +40,6 @@ func main() {
 	hasDarkBG := lipgloss.HasDarkBackground(os.Stdin, os.Stdout)
 	lightDark := lipgloss.LightDark(hasDarkBG)
 
-	// Create styles.
 	titleStyle := lipgloss.NewStyle().
 		Bold(true).
 		Foreground(lightDark(lipgloss.Color("#2D3748"), lipgloss.Color("#E2E8F0"))).
